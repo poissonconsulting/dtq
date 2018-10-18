@@ -21,3 +21,11 @@ test_that("dtq_pulse", {
 
   expect_identical(pulse$Discharge[5:11], c(5,15,25,33.5,26,18.5,11))
 })
+
+test_that("dtq_pulse with no change", {
+  data <- data.frame(DateTime = dttr::dtt_disaggregate(as.POSIXct("2002-02-02")))
+  data$Discharge <- 0
+
+  pulse <- dtq_pulse(data, rate_up = 1)
+  expect_identical(pulse$Discharge[1:3], rep(0, 3))
+})

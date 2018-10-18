@@ -34,6 +34,10 @@ pulse <- function(discharge, target, rate_down, rate_up) {
   if(switch[1]) switch <- !switch
   switch <- which(switch)
   if(!length(switch)) {
+    switch <- which(to == from)
+    switch <- switch[!switch %in% c(1L, n)]
+  }
+  if(!length(switch)) {
     wrn("pulse rates are incompatible with start and end discharges")
     return(discharge)
   }
