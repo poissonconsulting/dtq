@@ -7,8 +7,17 @@ test_that("discharge_to_stage", {
   r1d <- data.frame(Discharge = as.double(c(2,4:7)))
   r1d$Stage = r1d$Discharge^0.5
   
+  expect_error(dtq_discharge_to_stage(data, r1d, rate_down = 1), 
+               "argument 'rate_down' is not used [(]yet[)]")
+  
   data <- dtq_discharge_to_stage(data, r1d)
   
   expect_identical(data$Stage[1:8], c(NA,2^0.5,mean(c(2^0.5,4^0.5)),(4:7)^0.5,NA))
+  
+  data1 <- dtq_discharge_to_stage(data, r1d, delay = 1)
+  
+  expect_identical(data1$Stage[1:9], c(NA, NA,2^0.5,mean(c(2^0.5,4^0.5)),(4:7)^0.5,NA))
+  expect_identical(data1[c("DateTime", "Discharge")], 
+                   data[c("DateTime", "Discharge")])
 })
 

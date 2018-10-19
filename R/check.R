@@ -34,9 +34,9 @@ check_dtq <- function(x, dtt = "DateTime", colname = "Discharge",
   if(!nrow(x)) return(invisible(x))
   
   for(col in colname) {
-    check_vector(x[[colname]], c(0, chk_max_dbl(), NA),
+    check_vector(x[[col]], c(0, chk_max_dbl(), NA),
                  x_name = paste0("column '", col, "' of ", x_name))
-    check_vector(diff(x[[colname]]), c(rate_down * -1, rate_up, NA),
+    check_vector(diff(x[[col]]), c(rate_down * -1, rate_up, NA),
                  x_name = paste0("the differenced column '", col, "' of ", x_name),
                  error = error)
   }
