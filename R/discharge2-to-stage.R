@@ -2,12 +2,12 @@
 #' 
 #' @inheritParams check_dtq
 #' @inheritParams dtq_discharge_to_stage
-#' @param delay2 A count of the number of time units until the stage responds to the second discharge value.
+#' @param n2 A count of the number of time units until the stage responds to the second discharge value.
 #' @return The updated dtq data frame with a stage column.
 #' @export
 dtq_discharge2_to_stage <- function(
   x, r1d, dtt = "DateTime", colname = c("Discharge", "Discharge2"), 
-  stage = "Stage", delay = 0L, delay2 = 0L, rate_down = Inf,
+  stage = "Stage", n = 0L, n2 = 0L, rate_down = Inf,
   rate_up = rate_down, units = dtt_units(x[[dtt]])) {
   
   check_vector(colname, "", unique = TRUE, length = 2L)
@@ -16,8 +16,8 @@ dtq_discharge2_to_stage <- function(
   check_string(stage)
   check_data(r1d, c(colname, stage), key = colname)
   
-  delay <- check_count(delay, coerce = TRUE)
-  delay2 <- check_count(delay2, coerce = TRUE)
+  n <- check_count(n, coerce = TRUE)
+  n2 <- check_count(n2, coerce = TRUE)
   
   if(!is.infinite(rate_down)) .NotYetUsed("rate_down")
   if(!is.infinite(rate_up)) .NotYetUsed("rate_up")
@@ -37,8 +37,8 @@ dtq_discharge2_to_stage <- function(
   if(!requireNamespace("interp", quietly = TRUE)) 
     err("package interp is required")
 
-  xo <- dts_delay(x, dtt = dtt, colname = colname[1], delay = delay)[[colname[1]]]
-  yo <- dts_delay(x, dtt = dtt, colname = colname[2], delay = delay2)[[colname[2]]]
+  xo <- dts_lag(x, dtt = dtt, colname = colname[1], n = n, units = units)[[colname[1]]]
+  yo <- dts_lag(x, dtt = dtt, colname = colname[2], n = n2, units = units)[[colname[2]]]
   
   x[[stage]] <- interp::interp(
     r1d[[colname[1]]], y = r1d[[colname[2]]], z = r1d[[stage]], 

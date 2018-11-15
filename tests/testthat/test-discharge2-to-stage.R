@@ -19,7 +19,7 @@ test_that("discharge2_to_stage", {
                c(NA, 21.4142135623731, 31.7071067811865, 
                  42, 52.2360679774998, NA))
   
-  data1 <- dtq_discharge2_to_stage(data, r1d, delay = 1)
+  data1 <- dtq_discharge2_to_stage(data, r1d, n = 1)
   
   expect_equal(data1$Stage[1:6], 
                c(NA, NA, 31.4142135623731, 41.7071067811865, 52, NA))

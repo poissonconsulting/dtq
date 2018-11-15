@@ -4,11 +4,11 @@
 #' @param r1d A data frame of the discharge and stage values for a transect 
 #' from a 1-dimensional model.
 #' @param stage A string of the name of the column with the stage values.
-#' @param delay A count of the number of time units until the stage responds.
+#' @param n A count of the number of time units until the stage responds.
 #' @return The updated dtq data frame with a stage column.
 #' @export
 dtq_discharge_to_stage <- function(x, r1d, dtt = "DateTime", colname = "Discharge", 
-                      stage = "Stage", delay = 0L, rate_down = Inf,
+                      stage = "Stage", n = 0L, rate_down = Inf,
                       rate_up = rate_down, units = dtt_units(x[[dtt]])) {
   check_string(colname)
   check_dtq(x, dtt = dtt, colname = colname, 
@@ -16,7 +16,7 @@ dtq_discharge_to_stage <- function(x, r1d, dtt = "DateTime", colname = "Discharg
   check_string(stage)
   check_data(r1d, c(colname, stage), key = colname)
   
-  delay <- check_count(delay, coerce = TRUE)
+  n <- check_count(n, coerce = TRUE)
   
   if(!is.infinite(rate_down)) .NotYetUsed("rate_down")
   if(!is.infinite(rate_up)) .NotYetUsed("rate_up")
@@ -31,7 +31,7 @@ dtq_discharge_to_stage <- function(x, r1d, dtt = "DateTime", colname = "Discharg
   check_vector(r1d[[colname]], c(0, chk_max_dbl()))
   check_vector(r1d[[stage]])
   
-  xo <- dts_delay(x, dtt = dtt, colname = colname, delay = delay)[[colname]]
+  xo <- dts_lag(x, dtt = dtt, colname = colname, n = n, units = units)[[colname]]
 
   x[[stage]] <- stats::approx(r1d[[colname]], r1d[[stage]], xo)$y
   

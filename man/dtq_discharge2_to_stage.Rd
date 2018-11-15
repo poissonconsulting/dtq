@@ -5,8 +5,8 @@
 \title{Convert Discharge from Two Inputs to Stage}
 \usage{
 dtq_discharge2_to_stage(x, r1d, dtt = "DateTime",
-  colname = c("Discharge", "Discharge2"), stage = "Stage",
-  delay = 0L, delay2 = 0L, rate_down = Inf, rate_up = rate_down,
+  colname = c("Discharge", "Discharge2"), stage = "Stage", n = 0L,
+  n2 = 0L, rate_down = Inf, rate_up = rate_down,
   units = dtt_units(x[[dtt]]))
 }
 \arguments{
@@ -21,9 +21,9 @@ from a 1-dimensional model.}
 
 \item{stage}{A string of the name of the column with the stage values.}
 
-\item{delay}{A count of the number of time units until the stage responds.}
+\item{n}{A count of the number of time units until the stage responds.}
 
-\item{delay2}{A count of the number of time units until the stage responds to the second discharge value.}
+\item{n2}{A count of the number of time units until the stage responds to the second discharge value.}
 
 \item{rate_down}{A positive number of the maximum absolute rate when dropping the discharge.}
 

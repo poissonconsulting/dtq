@@ -25,23 +25,11 @@ The goal of dtq is to ...
 
 ## Installation
 
-To install the latest development version from [GitHub](https://github.com/poissonconsulting/dtq)
-```
-# install.packages("devtools")
-devtools::install_github("poissonconsulting/dtq")
-```
-
 To install the latest development version from the Poisson drat [repository](https://github.com/poissonconsulting/drat)
 ```
 # install.packages("drat")
 drat::addRepo("poissonconsulting")
 install.packages("dtq")
-```
-
-## Citation
-
-```{r, comment="", echo=FALSE}
-citation(package = "dtq")
 ```
 
 ## Contribution

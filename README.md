@@ -17,38 +17,12 @@ The goal of dtq is to …
 
 ## Installation
 
-To install the latest development version from
-[GitHub](https://github.com/poissonconsulting/dtq)
-
-    # install.packages("devtools")
-    devtools::install_github("poissonconsulting/dtq")
-
 To install the latest development version from the Poisson drat
 [repository](https://github.com/poissonconsulting/drat)
 
     # install.packages("drat")
     drat::addRepo("poissonconsulting")
     install.packages("dtq")
-
-## Citation
-
-    Warning in citation(package = "dtq"): no date field in DESCRIPTION file of
-    package 'dtq'
-    Warning in citation(package = "dtq"): could not determine year for 'dtq'
-    from package DESCRIPTION file
-    
-    To cite package 'dtq' in publications use:
-    
-      Joe Thorley (NA). dtq: Manipulate Data Frames with Discharge and
-      Stage Time Series. R package version 0.0.0.9000.
-    
-    A BibTeX entry for LaTeX users is
-    
-      @Manual{,
-        title = {dtq: Manipulate Data Frames with Discharge and Stage Time Series},
-        author = {Joe Thorley},
-        note = {R package version 0.0.0.9000},
-      }
 
 ## Contribution
 
