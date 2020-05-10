@@ -4,12 +4,25 @@
 \alias{check_dtq}
 \title{Check DateTime Discharge Data Frame}
 \usage{
-check_dtq(x, dtt = "DateTime", colname = "Discharge", nrow = NA,
-  nas = TRUE, floored = TRUE, sorted = FALSE, unique = FALSE,
-  complete = FALSE, rate_down = Inf, rate_up = rate_down,
-  units = dttr::dtt_units(x[[dtt]]), tz = dttr::dtt_tz(x[[dtt]]),
-  exclusive = FALSE, order = FALSE, x_name = substitute(x),
-  error = TRUE)
+check_dtq(
+  x,
+  dtt = "DateTime",
+  colname = "Discharge",
+  nrow = NA,
+  nas = TRUE,
+  floored = TRUE,
+  sorted = FALSE,
+  unique = FALSE,
+  complete = FALSE,
+  rate_down = Inf,
+  rate_up = rate_down,
+  units = dttr::dtt_units(x[[dtt]]),
+  tz = dttr::dtt_tz(x[[dtt]]),
+  exclusive = FALSE,
+  order = FALSE,
+  x_name = substitute(x),
+  error = TRUE
+)
 }
 \arguments{
 \item{x}{A dts data frame}

@@ -4,9 +4,17 @@
 \alias{dtq_discharge_to_stage}
 \title{Convert Discharge to Stage}
 \usage{
-dtq_discharge_to_stage(x, r1d, dtt = "DateTime", colname = "Discharge",
-  stage = "Stage", n = 0L, rate_down = Inf, rate_up = rate_down,
-  units = dtt_units(x[[dtt]]))
+dtq_discharge_to_stage(
+  x,
+  r1d,
+  dtt = "DateTime",
+  colname = "Discharge",
+  stage = "Stage",
+  n = 0L,
+  rate_down = Inf,
+  rate_up = rate_down,
+  units = dtt_units(x[[dtt]])
+)
 }
 \arguments{
 \item{x}{A dts data frame}

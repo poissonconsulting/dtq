@@ -4,9 +4,17 @@
 \alias{dtq_pulse}
 \title{Pulse}
 \usage{
-dtq_pulse(x, dtt = "DateTime", colname = "Discharge",
-  start = x[[dtt]][1], duration = 1L, target = 0, rate_down = Inf,
-  rate_up = rate_down, units = dtt_units(x[[dtt]]))
+dtq_pulse(
+  x,
+  dtt = "DateTime",
+  colname = "Discharge",
+  start = x[[dtt]][1],
+  duration = 1L,
+  target = 0,
+  rate_down = Inf,
+  rate_up = rate_down,
+  units = dtt_units(x[[dtt]])
+)
 }
 \arguments{
 \item{x}{A dts data frame}
