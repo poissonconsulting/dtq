@@ -1,5 +1,3 @@
-context("utils")
-
 test_that("cms",{
   expect_equal(dtq_cms_to_cfs(1:2), c(35.31467, 70.62933),
                    tolerance = 1e-06)

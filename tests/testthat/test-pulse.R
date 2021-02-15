@@ -1,5 +1,3 @@
-context("pulse")
-
 test_that("dtq_pulse", {
   data <- data.frame(DateTime = dttr::dtt_disaggregate(as.POSIXct("2002-02-02")))
   data$Discharge <- as.double(1:nrow(data))

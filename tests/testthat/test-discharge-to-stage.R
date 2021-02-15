@@ -1,5 +1,3 @@
-context("discharge-to-stage")
-
 test_that("discharge_to_stage", {
   data <- data.frame(DateTime = dttr::dtt_disaggregate(as.POSIXct("2002-02-02")))
   data$Discharge <- as.double(1:nrow(data))
