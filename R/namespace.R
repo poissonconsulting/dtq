@@ -1,2 +1,2 @@
-#' @import err checkr dttr dts
+#' @import chk dttr dts
 NULL
