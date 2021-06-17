@@ -13,7 +13,7 @@ dtq_discharge2_to_stage <- function(
   check_vector(colname, "", unique = TRUE, length = 2L)
   check_dtq(x, dtt = dtt, colname = colname, 
             complete = TRUE, sorted = TRUE, unique = TRUE, units = units)
-  check_string(stage)
+  chk_string(stage)
   check_data(r1d, c(colname, stage), key = colname)
   
   n <- check_count(n, coerce = TRUE)

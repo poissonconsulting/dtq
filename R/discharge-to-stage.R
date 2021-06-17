@@ -10,10 +10,10 @@
 dtq_discharge_to_stage <- function(x, r1d, dtt = "DateTime", colname = "Discharge", 
                       stage = "Stage", n = 0L, rate_down = Inf,
                       rate_up = rate_down, units = dtt_units(x[[dtt]])) {
-  check_string(colname)
+  chk_string(colname)
   check_dtq(x, dtt = dtt, colname = colname, 
             complete = TRUE, sorted = TRUE, unique = TRUE, units = units)
-  check_string(stage)
+  chk_string(stage)
   check_data(r1d, c(colname, stage), key = colname)
   
   n <- check_count(n, coerce = TRUE)
