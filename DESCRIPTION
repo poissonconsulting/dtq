@@ -7,6 +7,8 @@ Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Imports: 
   chk,
+  checkr,
+  err,
   dttr,
   dts,
   stats
@@ -16,6 +18,8 @@ Suggests:
     covr
 Remotes:
   poissonconsulting/chk,
+  poissonconsulting/checkr,
+  poissonconsulting/err,
   poissonconsulting/dttr,
   poissonconsulting/dts
 Encoding: UTF-8
