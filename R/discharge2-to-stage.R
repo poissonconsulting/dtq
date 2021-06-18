@@ -10,12 +10,16 @@ dtq_discharge2_to_stage <- function(
   stage = "Stage", n = 0L, n2 = 0L, rate_down = Inf,
   rate_up = rate_down, units = dtt_units(x[[dtt]])) {
   
-  check_vector(colname, "", unique = TRUE, length = 2L)
+
+  chk_vector(colname)
+  chk_unique(colname)
+  check_dim(colname, values = 2L)
+  
   check_dtq(x, dtt = dtt, colname = colname, 
             complete = TRUE, sorted = TRUE, unique = TRUE, units = units)
   chk_string(stage)
-  check_data(r1d, c(colname, stage), key = colname)
-  
+  check_data(r1d, key = colname)
+  check_names(r1d, names = c(colname, stage))
   chk_whole_number(n)
   chk_gte(n)
   n <- as.integer(n)
@@ -27,17 +31,26 @@ dtq_discharge2_to_stage <- function(
   if(!is.infinite(rate_down)) .NotYetUsed("rate_down")
   if(!is.infinite(rate_up)) .NotYetUsed("rate_up")
 
-  rate_down <- check_pos_dbl(rate_down, coerce = TRUE)
-  rate_up <- check_pos_dbl(rate_up, coerce = TRUE)
+  chk_dbl(rate_down)
+  chk_scalar(rate_down)
+  rate_down <- as.double(rate_down)
+  
+  chk_dbl(rate_up)
+  chk_scalar(rate_up)
+  rate_down <- as.double(rate_up)
   
   x[[stage]] <- rep(NA_real_, nrow(x))
   
   if(!nrow(x) || !nrow(r1d)) return(x)
   
-  check_vector(r1d[[colname[1]]], c(0, chk_max_dbl()))
-  check_vector(r1d[[colname[2]]], c(0, chk_max_dbl()))
-  check_unique(r1d[colname])
-  check_vector(r1d[[stage]], 1)
+  chk_vector(r1d[[colname[1]]])
+  chk_range(r1d[[colname[1]]], c(0, .Machine$double.xmax))
+  
+  chk_vector(r1d[[colname[2]]])
+  chk_range(r1d[[colname[2]]], c(0, .Machine$double.xmax))
+  
+  chk_unique(r1d[colname])
+  chk_vector(r1d[[stage]])
   
   if(!requireNamespace("interp", quietly = TRUE)) 
     err("package interp is required")

@@ -64,10 +64,16 @@ dtq_pulse <- function(x, dtt = "DateTime", colname = "Discharge",
             complete = TRUE, sorted = TRUE, unique = TRUE, 
             units = units)
 
-  check_pos_int(duration)
-  check_noneg_dbl(target)
-  check_pos_dbl(rate_down)
-  check_pos_dbl(rate_up)
+  chk_integer(duration)
+  chk_scalar(duration)
+  
+  chk_dbl(target)
+  chk_scalar(target)
+  
+  chk_dbl(rate_down)
+  chk_scalar(rate_down)
+  
+  chk_dbl(rate_up)
   
   if(!nrow(x)) return(x)
   check_dtt(start, length = 1L, nas = FALSE, tz = dtt_tz(x[[dtt]]))

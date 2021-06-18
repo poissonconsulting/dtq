@@ -13,9 +13,15 @@ dtq_add_drop <- function(x,  dtt = "DateTime", colname = "Discharge",
     err("start must be in ", dtt, " column")
   
   length <- c(1L, 1L, length(start))
-  check_vector(target, c(0, chk_max_dbl()), length = length)
-  check_vector(rate_down, c(0, chk_max_dbl()), length = length)
-  check_vector(rate_up, c(chk_tiny_dbl(), chk_max_dbl()), length = length)
+  
+  chk_vector(target)
+  check_dim(target, dim = length, values = c(0, .Machine$double.xmax))
+  
+  chk_vector(rate_down)
+  check_dim(rate_down, dim = length, values = c(0, .Machine$double.xmax))
+  
+  chk_vector(rate_up)
+  check_dim(rate_up, dim = length, values = c(.Machine$double.xmin, .Machine$double.xmax))
   
 
   

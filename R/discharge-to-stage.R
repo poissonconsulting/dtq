@@ -14,7 +14,8 @@ dtq_discharge_to_stage <- function(x, r1d, dtt = "DateTime", colname = "Discharg
   check_dtq(x, dtt = dtt, colname = colname, 
             complete = TRUE, sorted = TRUE, unique = TRUE, units = units)
   chk_string(stage)
-  check_data(r1d, c(colname, stage), key = colname)
+  check_data(r1d, key = colname)
+  check_names(r1d, names = c(colname, stage))
   
   chk_whole_number(n)
   chk_gte(n)
@@ -23,15 +24,21 @@ dtq_discharge_to_stage <- function(x, r1d, dtt = "DateTime", colname = "Discharg
   if(!is.infinite(rate_down)) .NotYetUsed("rate_down")
   if(!is.infinite(rate_up)) .NotYetUsed("rate_up")
 
-  rate_down <- check_pos_dbl(rate_down, coerce = TRUE)
-  rate_up <- check_pos_dbl(rate_up, coerce = TRUE)
+  chk_dbl(rate_down)
+  chk_scalar(rate_down)
+  rate_down <- as.double(rate_down)
+  
+  chk_dbl(rate_up)
+  chk_scalar(rate_up)
+  rate_down <- as.double(rate_up)
   
   x[[stage]] <- rep(NA_real_, nrow(x))
   
   if(!nrow(x) || !nrow(r1d)) return(x)
 
-  check_vector(r1d[[colname]], c(0, chk_max_dbl()))
-  check_vector(r1d[[stage]])
+  chk_vector(r1d[[colname]])
+  chk_range(r1d[[colname]], c(0, .Machine$double.xmax))
+  chk_vector(r1d[[stage]])
   
   xo <- dts_lag(x, dtt = dtt, colname = colname, n = n, units = units)[[colname]]
 
