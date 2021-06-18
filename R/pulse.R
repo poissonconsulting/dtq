@@ -76,8 +76,10 @@ dtq_pulse <- function(x, dtt = "DateTime", colname = "Discharge",
   chk_dbl(rate_up)
   
   if(!nrow(x)) return(x)
-  check_dtt(start, length = 1L, nas = FALSE, tz = dtt_tz(x[[dtt]]))
-  
+  check_dim(start, values = 1L)
+  dtt_units(start)
+  dtt_tz(start)
+  chk_not_any_na(start)
   if(is.Date(x[[dtt]])) {
     start <- dtt_date(start)
   } else

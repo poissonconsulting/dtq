@@ -7,9 +7,12 @@ dtq_add_drop <- function(x,  dtt = "DateTime", colname = "Discharge",
   check_dtq(x, dtt = dtt, colname = colname, 
             complete = TRUE, sorted = TRUE, unique = TRUE, units = units)
   if(!nrow(x)) return(x)
-  check_dtt(start, length = TRUE, unique = TRUE, sorted = TRUE, 
-            tz = dtt_tz(x[[dtt]]))
-  if(!all(start %in% x[[dtt]])) 
+  dtt_units(start)
+  chk_sorted(start)
+  chk_unique(start)
+  dtt_tz(start, x[[dtt]])
+  
+  if(!all(start %in% x[[dtt]]))
     err("start must be in ", dtt, " column")
   
   length <- c(1L, 1L, length(start))
@@ -22,7 +25,5 @@ dtq_add_drop <- function(x,  dtt = "DateTime", colname = "Discharge",
   
   chk_vector(rate_up)
   check_dim(rate_up, dim = length, values = c(.Machine$double.xmin, .Machine$double.xmax))
-  
-
   
 }

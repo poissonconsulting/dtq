@@ -8,6 +8,7 @@ License: MIT + file LICENSE
 Imports: 
   chk,
   dttr,
+  dttr2,
   dts,
   stats
 Suggests: 
@@ -16,6 +17,7 @@ Suggests:
     covr
 Remotes:
   poissonconsulting/chk,
+  poissonconsulting/dttr2,
   poissonconsulting/dttr,
   poissonconsulting/dts
 Encoding: UTF-8
