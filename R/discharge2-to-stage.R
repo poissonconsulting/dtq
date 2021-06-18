@@ -16,9 +16,14 @@ dtq_discharge2_to_stage <- function(
   chk_string(stage)
   check_data(r1d, c(colname, stage), key = colname)
   
-  n <- check_count(n, coerce = TRUE)
-  n2 <- check_count(n2, coerce = TRUE)
+  chk_whole_number(n)
+  chk_gte(n)
+  n <- as.integer(n)
   
+  chk_whole_number(n2)
+  chk_gte(n2)
+  n2 <- as.integer(n2)
+
   if(!is.infinite(rate_down)) .NotYetUsed("rate_down")
   if(!is.infinite(rate_up)) .NotYetUsed("rate_up")
 
