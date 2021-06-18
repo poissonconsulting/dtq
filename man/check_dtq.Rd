@@ -20,7 +20,7 @@ check_dtq(
   tz = dttr::dtt_tz(x[[dtt]]),
   exclusive = FALSE,
   order = FALSE,
-  x_name = substitute(x),
+  x_name = NULL,
   error = TRUE
 )
 }

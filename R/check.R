@@ -18,8 +18,11 @@ check_dtq <- function(x, dtt = "DateTime", colname = "Discharge",
                       units = dttr::dtt_units(x[[dtt]]),
                       tz = dttr::dtt_tz(x[[dtt]]),
                       exclusive = FALSE, order = FALSE,
-                      x_name = substitute(x), error = TRUE) {
-  x_name <- chk_deparse(x_name)
+                      x_name = NULL, error = TRUE) {
+  if (is.null(x_name)) 
+    x_name <- deparse_backtick_chk((substitute(x)))
+  chk_string(x_name)
+  
   check_vector(colname, "", length = TRUE, unique = TRUE)
   
   check_dts(x, dtt = dtt, colname = colname, nrow = nrow,
