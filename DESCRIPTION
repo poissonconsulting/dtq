@@ -7,11 +7,11 @@ Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Imports: 
   chk,
-  dttr,
   dttr2,
   dts,
   stats
 Suggests: 
+    dttr,
     interp,
     testthat,
     covr
