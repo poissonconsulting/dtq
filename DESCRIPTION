@@ -11,14 +11,12 @@ Imports:
   dts,
   stats
 Suggests: 
-    dttr,
     interp,
     testthat,
     covr
 Remotes:
   poissonconsulting/chk,
   poissonconsulting/dttr2,
-  poissonconsulting/dttr,
   poissonconsulting/dts
 Encoding: UTF-8
 LazyData: true

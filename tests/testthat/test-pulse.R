@@ -1,5 +1,5 @@
 test_that("dtq_pulse", {
-  data <- data.frame(DateTime = dttr::dtt_disaggregate(as.POSIXct("2002-02-02")))
+  data <- data.frame(DateTime = dtt_disaggregate(as.POSIXct("2002-02-02")))
   data$Discharge <- as.double(1:nrow(data))
   
   expect_identical(check_dtq(data), data)
@@ -20,7 +20,7 @@ test_that("dtq_pulse", {
 })
 
 test_that("dtq_pulse with no change", {
-  data <- data.frame(DateTime = dttr::dtt_disaggregate(as.POSIXct("2002-02-02")))
+  data <- data.frame(DateTime = dtt_disaggregate(as.POSIXct("2002-02-02")))
   data$Discharge <- 0
 
   pulse <- dtq_pulse(data, rate_up = 1)
