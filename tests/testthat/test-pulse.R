@@ -3,7 +3,7 @@ test_that("dtq_pulse", {
   data$Discharge <- as.double(1:nrow(data))
   
   expect_identical(check_dtq(data), data)
-  expect_error(check_dtq(data, rate_up = 0.5))
+  chk::expect_chk_error(check_dtq(data, rate_up = 0.5))
 
   pulse <- dtq_pulse(data)
   expect_identical(pulse$Discharge[1:3], c(1,0,3))
