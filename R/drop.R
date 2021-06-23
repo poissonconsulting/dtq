@@ -18,12 +18,14 @@ dtq_add_drop <- function(x,  dtt = "DateTime", colname = "Discharge",
   length <- c(1L, 1L, length(start))
   
   chk_vector(target)
-  check_dim(target, dim = length, values = c(0, .Machine$double.xmax))
+  check_dim(target)
+  chk_gte(target)
   
   chk_vector(rate_down)
-  check_dim(rate_down, dim = length, values = c(0, .Machine$double.xmax))
+  check_dim(rate_down)
+  chk_gte(rate_down)
   
   chk_vector(rate_up)
-  check_dim(rate_up, dim = length, values = c(.Machine$double.xmin, .Machine$double.xmax))
+  check_dim(rate_up, values = c(.Machine$double.xmin, .Machine$double.xmax))
   
 }

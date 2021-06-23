@@ -66,14 +66,16 @@ dtq_pulse <- function(x, dtt = "DateTime", colname = "Discharge",
 
   chk_integer(duration)
   chk_scalar(duration)
+  chk_gt(duration)
   
   chk_dbl(target)
-  chk_scalar(target)
+  chk_gte(target, 0)
   
   chk_dbl(rate_down)
-  chk_scalar(rate_down)
+  chk_gt(rate_down)
   
   chk_dbl(rate_up)
+  chk_gt(rate_up)
   
   if(!nrow(x)) return(x)
   check_dim(start, values = 1L)

@@ -25,11 +25,11 @@ dtq_discharge_to_stage <- function(x, r1d, dtt = "DateTime", colname = "Discharg
   if(!is.infinite(rate_up)) .NotYetUsed("rate_up")
 
   chk_dbl(rate_down)
-  chk_scalar(rate_down)
+  chk_gt(rate_down)
   rate_down <- as.double(rate_down)
   
   chk_dbl(rate_up)
-  chk_scalar(rate_up)
+  chk_gt(rate_up)
   rate_down <- as.double(rate_up)
   
   x[[stage]] <- rep(NA_real_, nrow(x))
@@ -37,7 +37,7 @@ dtq_discharge_to_stage <- function(x, r1d, dtt = "DateTime", colname = "Discharg
   if(!nrow(x) || !nrow(r1d)) return(x)
 
   chk_vector(r1d[[colname]])
-  chk_range(r1d[[colname]], c(0, .Machine$double.xmax))
+  chk_gte(r1d[[colname]])
   chk_vector(r1d[[stage]])
   
   xo <- dts_lag(x, dtt = dtt, colname = colname, n = n, units = units)[[colname]]

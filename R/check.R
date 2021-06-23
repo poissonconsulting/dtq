@@ -25,6 +25,8 @@ check_dtq <- function(x, dtt = "DateTime", colname = "Discharge",
   
   chk_vector(colname)
   chk_unique(colname)
+  check_values(colname, "")
+  check_dim(colname, values = TRUE)
   
   check_dts(x, dtt = dtt, colname = colname, nrow = nrow,
             nas = nas, floored = floored, sorted = sorted,
@@ -33,15 +35,15 @@ check_dtq <- function(x, dtt = "DateTime", colname = "Discharge",
             x_name = x_name, error = TRUE)
   
   chk_dbl(rate_down)
-  chk_scalar(rate_down)
+  chk_gt(rate_down)
   
   chk_dbl(rate_up)
-  chk_scalar(rate_up)
+  chk_gt(rate_up)
   
   
   for(col in colname) {
     chk_vector(x[[col]], x_name = paste0("column '", col, "' of ", x_name))
-    chk_range(x[[col]], c(0, .Machine$double.xmax, NA))
+    chk_gte(x[[col]])
     
     chk_vector(diff(x[[col]]), x_name = paste0("the differenced column '", col, "' of ", x_name))
     chk_range(diff(x[[col]]), c(rate_down * -1, rate_up, NA))
