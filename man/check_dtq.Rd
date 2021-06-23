@@ -16,11 +16,11 @@ check_dtq(
   complete = FALSE,
   rate_down = Inf,
   rate_up = rate_down,
-  units = dttr::dtt_units(x[[dtt]]),
-  tz = dttr::dtt_tz(x[[dtt]]),
+  units = dttr2::dtt_units(x[[dtt]]),
+  tz = dttr2::dtt_tz(x[[dtt]]),
   exclusive = FALSE,
   order = FALSE,
-  x_name = substitute(x),
+  x_name = NULL,
   error = TRUE
 )
 }

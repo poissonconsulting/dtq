@@ -6,9 +6,8 @@ Authors@R:
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Imports: 
-  err,
-  checkr,
-  dttr,
+  chk,
+  dttr2,
   dts,
   stats
 Suggests: 
@@ -16,10 +15,9 @@ Suggests:
     testthat,
     covr
 Remotes:
-  poissonconsulting/err,
-  poissonconsulting/checkr,
-  poissonconsulting/dttr,
+  poissonconsulting/chk,
+  poissonconsulting/dttr2,
   poissonconsulting/dts
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1

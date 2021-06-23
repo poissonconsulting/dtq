@@ -59,19 +59,29 @@ dtq_pulse <- function(x, dtt = "DateTime", colname = "Discharge",
                       start = x[[dtt]][1], duration = 1L,
                       target = 0, rate_down = Inf, rate_up = rate_down,
                       units = dtt_units(x[[dtt]])) {
-  check_string(colname)
+  chk_string(colname)
   check_dtq(x, dtt = dtt, colname = colname, 
             complete = TRUE, sorted = TRUE, unique = TRUE, 
             units = units)
 
-  check_pos_int(duration)
-  check_noneg_dbl(target)
-  check_pos_dbl(rate_down)
-  check_pos_dbl(rate_up)
+  chk_integer(duration)
+  chk_scalar(duration)
+  chk_gt(duration)
+  
+  chk_dbl(target)
+  chk_gte(target, 0)
+  
+  chk_dbl(rate_down)
+  chk_gt(rate_down)
+  
+  chk_dbl(rate_up)
+  chk_gt(rate_up)
   
   if(!nrow(x)) return(x)
-  check_dtt(start, length = 1L, nas = FALSE, tz = dtt_tz(x[[dtt]]))
-  
+  check_dim(start, values = 1L)
+  dtt_units(start)
+  dtt_tz(start)
+  chk_not_any_na(start)
   if(is.Date(x[[dtt]])) {
     start <- dtt_date(start)
   } else

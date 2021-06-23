@@ -1,11 +1,10 @@
 test_that("dtq_pulse", {
-  data <- data.frame(DateTime = dttr::dtt_disaggregate(as.POSIXct("2002-02-02")))
+  data <- data.frame(DateTime = dtt_disaggregate(as.POSIXct("2002-02-02")))
   data$Discharge <- as.double(1:nrow(data))
   
   expect_identical(check_dtq(data), data)
-  expect_error(check_dtq(data, rate_up = 0.5), 
-               "the values in the differenced column 'Discharge' of data must lie between -Inf and 0.5")
-  
+  chk::expect_chk_error(check_dtq(data, rate_up = 0.5))
+
   pulse <- dtq_pulse(data)
   expect_identical(pulse$Discharge[1:3], c(1,0,3))
   
@@ -21,7 +20,7 @@ test_that("dtq_pulse", {
 })
 
 test_that("dtq_pulse with no change", {
-  data <- data.frame(DateTime = dttr::dtt_disaggregate(as.POSIXct("2002-02-02")))
+  data <- data.frame(DateTime = dtt_disaggregate(as.POSIXct("2002-02-02")))
   data$Discharge <- 0
 
   pulse <- dtq_pulse(data, rate_up = 1)

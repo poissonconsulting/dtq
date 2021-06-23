@@ -15,12 +15,18 @@ check_dtq <- function(x, dtt = "DateTime", colname = "Discharge",
                       nrow = NA, nas = TRUE, floored = TRUE, 
                       sorted = FALSE, unique = FALSE, 
                       complete = FALSE, rate_down = Inf, rate_up = rate_down,
-                      units = dttr::dtt_units(x[[dtt]]),
-                      tz = dttr::dtt_tz(x[[dtt]]),
+                      units = dttr2::dtt_units(x[[dtt]]),
+                      tz = dttr2::dtt_tz(x[[dtt]]),
                       exclusive = FALSE, order = FALSE,
-                      x_name = substitute(x), error = TRUE) {
-  x_name <- chk_deparse(x_name)
-  check_vector(colname, "", length = TRUE, unique = TRUE)
+                      x_name = NULL, error = TRUE) {
+  if (is.null(x_name)) 
+    x_name <- deparse_backtick_chk((substitute(x)))
+  chk_string(x_name)
+  
+  chk_vector(colname)
+  chk_unique(colname)
+  check_values(colname, "")
+  check_dim(colname, values = TRUE)
   
   check_dts(x, dtt = dtt, colname = colname, nrow = nrow,
             nas = nas, floored = floored, sorted = sorted,
@@ -28,17 +34,20 @@ check_dtq <- function(x, dtt = "DateTime", colname = "Discharge",
             tz = tz, exclusive = exclusive, order = order,
             x_name = x_name, error = TRUE)
   
-  check_pos_dbl(rate_down)
-  check_pos_dbl(rate_up)
-
-  if(!nrow(x)) return(invisible(x))
+  chk_dbl(rate_down)
+  chk_gt(rate_down)
+  
+  chk_dbl(rate_up)
+  chk_gt(rate_up)
+  
   
   for(col in colname) {
-    check_vector(x[[col]], c(0, chk_max_dbl(), NA),
-                 x_name = paste0("column '", col, "' of ", x_name))
-    check_vector(diff(x[[col]]), c(rate_down * -1, rate_up, NA),
-                 x_name = paste0("the differenced column '", col, "' of ", x_name),
-                 error = error)
+    chk_vector(x[[col]], x_name = paste0("column '", col, "' of ", x_name))
+    chk_gte(x[[col]])
+    
+    chk_vector(diff(x[[col]]), x_name = paste0("the differenced column '", col, "' of ", x_name))
+    chk_range(diff(x[[col]]), c(rate_down * -1, rate_up, NA))
+    
   }
   invisible(x)
 }
