@@ -3,7 +3,7 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+deprecated](https://img.shields.io/badge/lifecycle-deprecated-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated)
 [![R build
 status](https://github.com/poissonconsulting/dtq/workflows/R-CMD-check/badge.svg)](https://github.com/poissonconsulting/dtq/actions)
 [![Codecov test
